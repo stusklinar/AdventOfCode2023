@@ -1016,6 +1016,10 @@ lines.forEach((line) => {
       } else {
         last = char;
       }
+
+      if(last == 0){
+        last = first;
+      }
     }
   });
   numbers.push(first+last);
