@@ -1,5 +1,6 @@
 var regex = /\d(?!\d)/g;
-var string =  `tmmnhlxzpj1eightldxhjnone97
+var string1 = `five277`;
+var string = `tmmnhlxzpj1eightldxhjnone97
 9fivekfpl855mjmfdqzvbn
 two29eighteight1
 4md
@@ -1001,36 +1002,56 @@ drvglmnine7three8one7twodxtr
 mbnfjkxptbtjmgcrtkhxjvjhjnine83mpnsixfcmxcbnspx`;
 var lines = string.split("\n");
 
+wordnumbers = [
+  "one",
+  "two",
+  "three",
+  "four",
+  "five",
+  "six",
+  "seven",
+  "eight",
+  "nine",
+];
+numbernumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
 var numbers = [];
 
 lines.forEach((line) => {
-  let first = 0;
-  let last = 0;
-  let haveFirst = false;
+  let result = "";
+  let end = 0;
 
-  line.split('').forEach((char) => {
-    if (!isNaN(char)) {
-      if (!haveFirst) {
-        first = char;
-        haveFirst = true;
-      } else {
-        last = char;
+  lineArry = line.split("");
+
+  //tmmnhlxzpj1eightldxhjnone97
+
+  for (let i = 0; i < lineArry.length; i++) {
+    if (!isNaN(lineArry[i])) {
+      result += lineArry[i];
+    }
+
+    for (let wordIndex = 0; wordIndex < wordnumbers.length; wordIndex++) {
+      let word = wordnumbers[wordIndex];
+
+      end = i + word.length;
+      if (end > line.length) {
+        end = line.length - 1;
       }
-
-      if(last == 0){
-        last = first;
+      if (word == line.substring(i , end)) {
+        result = result += numbernumbers[wordIndex];
       }
     }
-  });
+  }
+  let first = result[0];
+  let last = result[result.length - 1];
   numbers.push(first+last);
-}); 
+});
 
 let sum = 0;
 for (let i = 0; i < numbers.length; i++) {
-console.log( Number(numbers[i]));
+  console.log(Number(numbers[i]));
+
   sum += Number(numbers[i]);
 }
 
 console.log(sum);
-
-
